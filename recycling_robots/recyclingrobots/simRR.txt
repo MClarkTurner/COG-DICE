@@ -1,0 +1,14 @@
+# Set environment of simulation
+minValue 0
+maxValue 100
+# Set tagger information
+numAgents 2
+obsError 5 5
+transitionError 5 5
+#declare agent actions
+actions
+recharge smCan bgCan
+recharge smCan bgCan
+# Set reward information
+rewards 4 5 2 0 -10
+#eof

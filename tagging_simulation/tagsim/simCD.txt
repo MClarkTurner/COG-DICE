@@ -1,0 +1,22 @@
+# Set environment of simulation
+minSize 0
+maxSize 10
+contStates true
+contObs false
+divisionSize 1.0
+# Set tagger information
+numTaggers 2
+tagRange 1	1
+obsError .1 .1
+transitionError .1 .1
+#first value is the evader
+agentSpeed 1 1 1
+#declare agent actions
+actions
+tag mvL1 mvR1
+tag mvL1 mvR1
+# Set reward information
+reward 50
+penalty -20
+wait -1
+#eof

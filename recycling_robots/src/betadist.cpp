@@ -4,9 +4,8 @@ using namespace std;
 
 DivisionData MLE(vector<double> v, unsigned noise){
 	//Returns the alpha-beta pair that matches the distribution
-	for(int i = 0; i < noise; i++){
-		//cout << v[i] << endl;
-		v.push_back(sampleBeta(1,1));
+	for(int i = 0; i < v.size(); i++){
+		//cout << v[i] << endl;//v.push_back(sampleBeta(1,1));
 	}
 
 	double v1 = 0;

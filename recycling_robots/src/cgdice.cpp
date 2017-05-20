@@ -355,16 +355,13 @@ void CGDICEPlanner::updateCEProbDistribution(
                     _transitionFunction[a][n][obs][nn] = _learningRate *( _transitionCount[a][n][obs][nn] / double(sum) ) + (1-_learningRate ) * oldProbs[nn];
                 }
             }
-            
-            unsigned noise = 0;
-            if(pi <= 1){
-                noise = _numberOfSamples;
-            }
-            for(size_t d = 0; d < pow(_numTransitions-1, _problem->getDimension()); d++){
-                //_divisionFunction[a][n][d] = MLE(_divisionCount[a][n][d]);
-                DivisionData dd = MLE(_divisionCount[a][n][d], noise);
-                _divisionFunction[a][n][d].alpha = _learningRate * dd.alpha + (1-_learningRate ) * _divisionFunction[a][n][d].alpha;
-                _divisionFunction[a][n][d].beta = _learningRate * dd.beta + (1-_learningRate ) * _divisionFunction[a][n][d].beta;
+            if(pi > 1){
+                for(size_t d = 0; d < pow(_numTransitions-1, _problem->getDimension()); d++){
+                    //_divisionFunction[a][n][d] = MLE(_divisionCount[a][n][d]);
+                    DivisionData dd = MLE(_divisionCount[a][n][d], 2*_divisionCount[a][n][d].size());
+                    _divisionFunction[a][n][d].alpha = _learningRate * dd.alpha + (1-_learningRate ) * _divisionFunction[a][n][d].alpha;
+                    _divisionFunction[a][n][d].beta = _learningRate * dd.beta + (1-_learningRate ) * _divisionFunction[a][n][d].beta;
+                } 
             }
     	}
     }

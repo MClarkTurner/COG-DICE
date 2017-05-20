@@ -1,0 +1,34 @@
+#!/bin/bash
+
+executeDir=cgdice-cont\ src/
+depositDir='data/'
+inFile='tagsim/simCC.txt'
+n=3
+r=2
+i=500
+s=1000
+k=50
+t=3
+a=0.1
+
+erun=1000
+edepth=150
+d=0.9
+
+echo 'Begin!'
+
+graphfile=$depositDir'graphGDICE_'$n'_'$i'_'$s'_'$k'_'$t'.txt'
+distfile='distGDICE_'$n'_'$i'_'$s'_'$k'_'$t
+
+outfile=$depositDir'resultGDICE_'$n'_'$i'_'$s'_'$k'_'$t'.txt' 
+
+#echo 'test '$r' '$n' '$i' '$s' '$k' '$t' output in: '$outfile
+
+executable='./'$executeDir'runcgdice'
+echo '+++++++++++++++++++++++++++++++++++++'
+echo "$executable"' -f '$inFile' -n '$n' -r '$r' -i '$i' -s '$s' -k '$k' -t '$t' -a '$a' -er '$erun' -ed '$edepth' -d '$d' -o '$graphfile' -w '$distfile' > '$outfile
+"$executable" -f $inFile -n $n -r $r -i $i -s $s -k $k -t $t -a $a -er $erun -ed $edepth -d $d -o $graphfile -w $distfile > $outfile
+echo '+++++++++++++++++++++++++++++++++++++'
+
+echo 'Done!'
+

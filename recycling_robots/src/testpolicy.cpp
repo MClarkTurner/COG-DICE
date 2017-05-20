@@ -127,117 +127,36 @@ int main(){
     struct JointPolicyGraph jprr;
     for(int i = 0; i < ts->getNumTaggers(); i++){
         struct FSA fsa;
-        for(int n = 0; n < 3; n++){
+        for(int n = 0; n < 4; n++){
             if(n == 0)
                 fsa.nodes.push_back(2);
             else if(n == 1)
-                fsa.nodes.push_back(1);
+                fsa.nodes.push_back(0);
             else if(n == 2)
+                fsa.nodes.push_back(0);
+            else if(n == 3)
                 fsa.nodes.push_back(0);
             
             fsa.connections.push_back(vector<size_t>());
             for(int o = 0; o < 2; o++){
-                if(i == 0){
-                    if(n == 0){
-                        if(o == 0){
-                            fsa.connections[n].push_back(1);
-                        }
-                        else{
-                            fsa.connections[n].push_back(2);
-                        }
-                    }
-                     if(n == 1){
-                        if(o == 0){
-                            fsa.connections[n].push_back(2);
-                        }
-                        else{
-                            fsa.connections[n].push_back(1);
-                        }
-                    }
-                     if(n == 2){
-                        if(o == 0){
-                            fsa.connections[n].push_back(1);
-                        }
-                        else{
-                            fsa.connections[n].push_back(0);
-                        }
-                    }
+                int val = n+1;
+                if(val >= 3)
+                    val = 0;
+                if(o == 0){
+                    fsa.connections[n].push_back(2);
                 }
                 else{
-                    if(n == 0){
-                        if(o == 0){
-                            fsa.connections[n].push_back(1);
-                        }
-                        else{
-                            fsa.connections[n].push_back(2);
-                        }
-                    }
-                     if(n == 1){
-                        if(o == 0){
-                            fsa.connections[n].push_back(2);
-                        }
-                        else{
-                            fsa.connections[n].push_back(1);
-                        }
-                    }
-                     if(n == 2){
-                        if(o == 0){
-                            fsa.connections[n].push_back(1);
-                        }
-                        else{
-                            fsa.connections[n].push_back(0);
-                        }
-                    }
+                    fsa.connections[n].push_back(0);
                 }
-                /*else{
-                    int val = n+1;
-                    if(val >= 3)
-                        val = 0;
-                    if(o == 0){
-                        fsa.connections[n].push_back(val);
-                    }
-                    else{
-                        fsa.connections[n].push_back(val);
-                    }
-                }*/
             }
 
             fsa.divisions.push_back(vector<double>());
             fsa.divisionSort.push_back(vector<double>());
             for(int d = 0; d < 1; d++){
-                if(i == 0){
-                    if(n == 0){
-                        fsa.divisionSort[n].push_back(78);
-                        fsa.divisions[n].push_back(78);
-                    }
-                    if(n == 1){
-                        fsa.divisionSort[n].push_back(15);
-                        fsa.divisions[n].push_back(15);
-                    }
-                    if(n == 2){
-                        fsa.divisionSort[n].push_back(47);
-                        fsa.divisions[n].push_back(47);
-                    }
-                }
-                if(i == 1){
-                    if(n == 0){
-                        fsa.divisionSort[n].push_back(61);
-                        fsa.divisions[n].push_back(61);
-                    }
-                    if(n == 1){
-                        fsa.divisionSort[n].push_back(15);
-                        fsa.divisions[n].push_back(15);
-                    }
-                    if(n == 2){
-                        fsa.divisionSort[n].push_back(49);
-                        fsa.divisions[n].push_back(49);
-                    }
-                }
-                //fsa.divisionSort[n].push_back(20);
-                //fsa.divisions[n].push_back(20);
+                fsa.divisionSort[n].push_back(50);
+                fsa.divisions[n].push_back(50);
             }
         }
-        
         
         jprr.FSAs.push_back(fsa);
     }
